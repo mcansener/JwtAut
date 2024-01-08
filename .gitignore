@@ -42,3 +42,11 @@
 /Authentication/bin/Debug/net8.0/MBM.Common.dll
 /Authentication/bin/Debug/net8.0/MBM.Common.pdb
 /.vs/Authentication/FileContentIndex/b5778d35-a4aa-48ba-828d-51b72ab74bbe.vsidx
+/MBM.DAL.API/bin/Debug/net8.0/MBM.DAL.API.dll
+/MBM.DAL.API/bin/Debug/net8.0/MBM.DAL.API.exe
+/MBM.DAL.API/bin/Debug/net8.0/MBM.DAL.API.pdb
+/MBM.DAL.API/bin/Debug/net8.0/MBM.DAL.API.runtimeconfig.json
+/.vs/Authentication/FileContentIndex/5596a3ab-70fb-48ef-afcc-ca0af0cf6197.vsidx
+/.vs/Authentication/FileContentIndex/9ca8bb4d-b2bf-4b93-b5d4-7632b61aae62.vsidx
+/.vs/Authentication/FileContentIndex/a31a947b-0b81-4da8-beae-58b800b0c18e.vsidx
+/Authentication/obj/Debug/net8.0/Authentication.GeneratedMSBuildEditorConfig.editorconfig
