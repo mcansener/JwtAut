@@ -11,3 +11,6 @@ MBM.UI/bin/
 /MBM.DAL.API/Properties/launchSettings.json
 /MBM.UI/Properties/launchSettings.json
 /MBM.UI/bin/
+/MBM.UI/bin/Debug/net8.0/MBM.UI.dll
+/MBM.UI/bin/Debug/net8.0/MBM.UI.exe
+/MBM.UI/bin/Debug/net8.0/MBM.UI.pdb
