@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using MBM.Common.Models.Api.Request;
 
 namespace Authentication.Controllers
 {
@@ -22,13 +24,20 @@ namespace Authentication.Controllers
             _key = configuration["Jwt:Key"]!;
         }
 
-        public string GenerateToken(string userId, string username, string tokenSecretKey)
+        [HttpPost("generate")]
+        public IActionResult GenerateToken([FromBody] TokenRequest model)
         {
-            if (tokenSecretKey != _key)
+            if (model.TokenSecretKey != _key)
             {
-                return "Invalid key provided!";
+                return BadRequest("Invalid key provided!");
             }
 
+            var token = BuildToken(model.UserId, model.Username);
+            return Ok(new { token });
+        }
+
+        private string BuildToken(string userId, string username)
+        {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_key);
 

@@ -35,3 +35,9 @@
 /Authentication/obj/Authentication.csproj.nuget.dgspec.json
 /Authentication/obj/project.assets.json
 /Authentication/obj/project.nuget.cache
+/Authentication/obj/Debug/net8.0/Authentication.AssemblyInfo.cs
+/Authentication/obj/Debug/net8.0/Authentication.AssemblyInfoInputs.cache
+/Authentication/obj/Debug/net8.0/Authentication.csproj.AssemblyReference.cache
+/Authentication/bin/Debug/net8.0/Authentication.deps.json
+/Authentication/bin/Debug/net8.0/MBM.Common.dll
+/Authentication/bin/Debug/net8.0/MBM.Common.pdb
