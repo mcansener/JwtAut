@@ -1,0 +1,6 @@
+@MBM.DAL.API_HostAddress = http://localhost:5231
+
+GET {{MBM.DAL.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
