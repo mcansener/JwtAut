@@ -1,7 +1,24 @@
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Configuration.AddJsonFile("appsettings.json");
+
+var configuration = builder.Configuration;
+
+var dalBaseUrl = configuration["ApiSettings:DalBaseUrl"];
+var tokenBaseUrl = configuration["ApiSettings:TokenBaseUrl"];
+
+builder.Services.AddHttpClient("DalApiClient", client =>
+{
+    client.BaseAddress = new Uri(dalBaseUrl!);
+});
+
+builder.Services.AddHttpClient("TokenApiClient", client =>
+{
+    client.BaseAddress = new Uri(tokenBaseUrl!);
+});
 
 var app = builder.Build();
 
