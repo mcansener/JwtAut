@@ -21,7 +21,7 @@ namespace Authentication.Controllers
         {
             _issuer = configuration["Jwt:Issuer"]!;
             _audience = configuration["Jwt:Audience"]!;
-            _key = configuration["Jwt:Key"]!;
+            _key = configuration["Jwt:SecretKey"]!;
         }
 
         [HttpPost("generate")]

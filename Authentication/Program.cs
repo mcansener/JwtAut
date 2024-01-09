@@ -1,4 +1,7 @@
+using MBM.Common.Middleware;
+using MBM.Common.Models.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -27,11 +30,16 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]!))
     };
 });
 
 var app = builder.Build();
+
+var domainRestrictionOptions = builder.Configuration.GetSection("DomainRestriction").Get<DomainRestrictionOptions>();
+
+app.UseMiddleware<DomainRestrictionMiddleware>(Options.Create(domainRestrictionOptions!));
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -1,4 +1,8 @@
 
+using MBM.Common.Middleware;
+using MBM.Common.Models.Options;
+using Microsoft.Extensions.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -21,6 +25,10 @@ builder.Services.AddHttpClient("TokenApiClient", client =>
 });
 
 var app = builder.Build();
+
+//var domainRestrictionOptions = builder.Configuration.GetSection("DomainRestriction").Get<DomainRestrictionOptions>();
+
+//app.UseMiddleware<DomainRestrictionMiddleware>(Options.Create(domainRestrictionOptions!));
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
