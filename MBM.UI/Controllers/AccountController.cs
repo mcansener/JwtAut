@@ -76,7 +76,7 @@ namespace MBM.UI.Controllers
         private async Task<TokenResponse?> RequestJwtTokenFromJwtApiAsync(TokenRequest model)
         {
             var jsonContent = new StringContent(JsonSerializer.Serialize(model), Encoding.UTF8, "application/json");
-            var response = await _tokenApiClient.PostAsync("generate", jsonContent);
+            var response = await _tokenApiClient.PostAsync("Token/generate", jsonContent);
 
             if (response.IsSuccessStatusCode)
             {
