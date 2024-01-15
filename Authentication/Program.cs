@@ -1,8 +1,10 @@
+using MBM.Common.Helpers;
 using MBM.Common.Middleware;
 using MBM.Common.Models.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Serilog;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,12 +36,22 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+// Configure services
+builder.Services.Configure<DomainRestrictionOptions>(builder.Configuration.GetSection("DomainRestriction"));
+
+LoggingHelper.InitializeLogger(args);
+builder.Host.UseSerilog();
+
 var app = builder.Build();
 
-var domainRestrictionOptions = builder.Configuration.GetSection("DomainRestriction").Get<DomainRestrictionOptions>();
+app.Use(async (context, next) =>
+{
+    // Retrieve the DomainRestrictionOptions from the DI container
+    var domainRestrictionOptions = app.Services.GetRequiredService<IOptions<DomainRestrictionOptions>>().Value;
 
-app.UseMiddleware<DomainRestrictionMiddleware>(Options.Create(domainRestrictionOptions!));
-
+    var middleware = new DomainRestrictionMiddleware(next, domainRestrictionOptions);
+    await middleware.InvokeAsync(context);
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
