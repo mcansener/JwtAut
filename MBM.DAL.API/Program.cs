@@ -2,6 +2,7 @@ using MBM.Common.Helpers;
 using MBM.Common.Middleware;
 using MBM.Common.Models.Options;
 using MBM.DAL.API.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -9,6 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
 builder.Services.AddDbContext<AppDbContext>(c => c.UseSqlServer(connectionString));
+
+builder.Services.AddIdentity<User, IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddScoped<UserManager<User>>();
 
 // Configure services
 builder.Services.Configure<DomainRestrictionOptions>(builder.Configuration.GetSection("DomainRestriction"));

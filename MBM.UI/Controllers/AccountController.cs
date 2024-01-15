@@ -37,7 +37,7 @@ namespace MBM.UI.Controllers
 
             var jsonContent = new StringContent(JsonSerializer.Serialize(registerDto), Encoding.UTF8, "application/json");
 
-            var response = await _dalApiClient.PostAsync("register", jsonContent);
+            var response = await _dalApiClient.PostAsync("api/user/register", jsonContent);
 
             if (response.IsSuccessStatusCode)
             {

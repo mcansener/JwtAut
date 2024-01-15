@@ -13,8 +13,8 @@ builder.Configuration.AddJsonFile("appsettings.json");
 
 var configuration = builder.Configuration;
 
-var dalBaseUrl = configuration["ApiSettings:DalBaseUrl"];
-var tokenBaseUrl = configuration["ApiSettings:TokenBaseUrl"];
+var dalBaseUrl = configuration["DalBaseUrl"];
+var tokenBaseUrl = configuration["TokenBaseUrl"];
 
 builder.Services.AddHttpClient("DalApiClient", client =>
 {
